@@ -37,10 +37,10 @@ jobs:
         uses: docker/setup-buildx-action@v3
         
       - name: Docker build
-        run:
+        run: |
           docker build -t estebanignacio/ms-aumento-voto-test:lates
       - name: Docker push
-        run:
+        run: |
           docker push estebanignacio/ms-aumento-voto-test:lates
       
             
