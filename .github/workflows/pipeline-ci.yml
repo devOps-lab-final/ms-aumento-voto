@@ -17,8 +17,8 @@ jobs:
       
       - name: Compilar codigo
         run: |
-          mvn package
-          #echo "package"
+          #mvn package
+          echo "package"
       - name: Analisis SonarCloud
         run: |
           mvn clean verify sonar:sonar \
