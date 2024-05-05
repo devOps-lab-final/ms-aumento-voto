@@ -17,21 +17,28 @@ jobs:
       
       - name: Compilar codigo
         run: |
-          #mvn package
+          mvn package
           echo "package"
-      - name: Analisis SonarCloud
-        run: |
-          mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:3.11.0.3922:sonar \
-            -Dsonar.token=${{ secrets.SONAR_TOKEN }} \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.organization=devops-lab-final \
-            -Dsonar.projectKey=devOps-lab-final_ms-aumento-voto
+      # - name: Analisis SonarCloud
+      #   run: |
+      #     mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:3.11.0.3922:sonar \
+      #       -Dsonar.token=${{ secrets.SONAR_TOKEN }} \
+      #       -Dsonar.host.url=https://sonarcloud.io \
+      #       -Dsonar.organization=devops-lab-final \
+      #       -Dsonar.projectKey=devOps-lab-final_ms-aumento-voto
 
       - name: Docker Login
         uses: docker/login-action@v3.1.0
         with:
             username: estebanignacio 
             password: ${{secrets.DOCKER_PASS}}
+
+      - name: Docker build
+        run:
+          docker build -t estebanignacio/ms-aumento-voto-test:lates
+      - name: Docker push
+        run:
+          docker push estebanignacio/ms-aumento-voto-test:lates
       
             
           
